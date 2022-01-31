@@ -2,10 +2,12 @@ package com.nerdysoft.pdpproject.entity;
 
 import com.nerdysoft.pdpproject.entity.dto.PlanDto;
 import com.nerdysoft.pdpproject.entity.enums.PlanStatus;
+import com.nerdysoft.pdpproject.validation.annotations.CreatePStatus;
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +24,17 @@ public class Plan {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @FutureOrPresent(message = "Start date must be now or in the future")
     private LocalDate startDate;
 
+    @Future(message = "End date must be in the future")
     private LocalDate endDate;
 
+    @Size(min = 5, max = 80, message = "Size of description must be between 5 and 80 chars")
+    @NotEmpty(message = "Description must be filled")
     private String description;
 
+    @CreatePStatus
     @Enumerated(EnumType.STRING)
     private PlanStatus planStatus;
 

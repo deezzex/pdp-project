@@ -3,10 +3,13 @@ package com.nerdysoft.pdpproject.entity;
 import com.nerdysoft.pdpproject.entity.dto.GoalDto;
 import com.nerdysoft.pdpproject.entity.enums.GoalPriority;
 import com.nerdysoft.pdpproject.entity.enums.GoalStatus;
+import com.nerdysoft.pdpproject.validation.annotations.CreateGPriority;
+import com.nerdysoft.pdpproject.validation.annotations.CreateGStatus;
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,24 +26,36 @@ public class Goal {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Size(min = 3, max = 20, message = "Size of title must be between 3 and 20 chars")
+    @NotEmpty(message = "Title must be filled")
     private String title;
 
+    @Size(min = 5, max = 80, message = "Size of description must be between 5 and 80 chars")
+    @NotEmpty(message = "Description must be filled")
     private String description;
 
+    @FutureOrPresent(message = "Start date must be now or in the future")
     private LocalDate startDate;
 
+    @Future(message = "Planed end date must be in the future")
     private LocalDate planedEndDate;
 
+    @Future(message = "End date must be in the future")
     private LocalDate endDate;
 
+    @CreateGPriority
     @Enumerated(EnumType.STRING)
     private GoalPriority goalPriority;
 
+    @CreateGStatus
     @Enumerated(EnumType.STRING)
     private GoalStatus goalStatus;
 
+    @Size(min = 5, max = 40, message = "Size of comment must be between 5 and 40 chars")
     private String comment;
 
+    @Min(value = 1, message = "Mark must be bigger than 0")
+    @Max(value = 10, message = "Mark must be less equal 10")
     private Integer mark;
 
     @OneToMany(cascade = CascadeType.ALL)

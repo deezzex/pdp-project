@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class SuccessCriteriaDto {
+public class SCDto {
     private Long id;
 
     private String title;
@@ -16,9 +16,9 @@ public class SuccessCriteriaDto {
 
     private CriteriaStatus criteriaStatus;
 
-    public static SuccessCriteriaDto from(SuccessCriteria successCriteria){
+    public static SCDto from(SuccessCriteria successCriteria){
 
-        return SuccessCriteriaDto.builder()
+        return SCDto.builder()
                 .id(successCriteria.getId())
                 .title(successCriteria.getTitle())
                 .description(successCriteria.getDescription())

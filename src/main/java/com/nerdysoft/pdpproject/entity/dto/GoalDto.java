@@ -33,7 +33,7 @@ public class GoalDto {
 
     private Integer mark;
 
-    private List<SuccessCriteriaDto> criteriaDtos;
+    private List<SCDto> criteriaDtos;
 
     public static GoalDto from(Goal goal){
 
@@ -48,7 +48,7 @@ public class GoalDto {
                 .goalStatus(goal.getGoalStatus())
                 .comment(goal.getComment())
                 .mark(goal.getMark())
-                .criteriaDtos(goal.getSuccessCriteria().stream().map(SuccessCriteriaDto::from).collect(Collectors.toList()))
+                .criteriaDtos(goal.getSuccessCriteria().stream().map(SCDto::from).collect(Collectors.toList()))
                 .build();
     }
 }
