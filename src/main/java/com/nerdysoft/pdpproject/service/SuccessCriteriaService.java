@@ -50,7 +50,16 @@ public class SuccessCriteriaService {
 
     }
 
-    public void delete(Long id){
-        repository.deleteById(id);
+    public boolean delete(Long id){
+
+        Optional<SuccessCriteria> byId = repository.findById(id);
+
+        if (byId.isPresent()){
+            SuccessCriteria criteria = byId.get();
+            repository.delete(criteria);
+        }
+        Optional<SuccessCriteria> removed = repository.findById(id);
+
+        return removed.isEmpty();
     }
 }

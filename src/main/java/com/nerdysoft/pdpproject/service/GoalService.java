@@ -56,8 +56,18 @@ public class GoalService {
             return new Goal();
     }
 
-    public void delete(Long id){
-        repository.deleteById(id);
+    public boolean delete(Long id){
+
+        Optional<Goal> byId = repository.findById(id);
+
+        if (byId.isPresent()){
+            Goal goal = byId.get();
+            repository.delete(goal);
+        }
+        Optional<Goal> removed = repository.findById(id);
+
+        return removed.isEmpty();
+
     }
 
 

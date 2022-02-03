@@ -51,8 +51,16 @@ public class PlanService {
             return new Plan();
     }
 
-    public void delete(Long id){
-        repository.deleteById(id);
+    public boolean delete(Long id){
+        Optional<Plan> byId = repository.findById(id);
+
+        if (byId.isPresent()){
+            Plan plan = byId.get();
+            repository.delete(plan);
+        }
+        Optional<Plan> removed = repository.findById(id);
+
+        return removed.isEmpty();
     }
 
     @Transactional
@@ -71,7 +79,7 @@ public class PlanService {
     }
 
     @Transactional
-    public Plan removeCriteriaFromGoal(Long planId, Long goalId){
+    public Plan removeGoalFromPlan(Long planId, Long goalId){
         Optional<Plan> maybePlan = findById(planId);
         Optional<Goal> maybeGoal = goalService.findById(goalId);
         if (maybeGoal.isPresent() && maybePlan.isPresent()){

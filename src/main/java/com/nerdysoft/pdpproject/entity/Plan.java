@@ -1,10 +1,12 @@
 package com.nerdysoft.pdpproject.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.nerdysoft.pdpproject.entity.dto.PlanDto;
 import com.nerdysoft.pdpproject.entity.enums.PlanStatus;
 import com.nerdysoft.pdpproject.validation.annotations.CreatePStatus;
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -25,6 +27,7 @@ public class Plan {
     private Long id;
 
     @FutureOrPresent(message = "Start date must be now or in the future")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
 
     @Future(message = "End date must be in the future")
@@ -60,6 +63,23 @@ public class Plan {
         plan.setPlanStatus(planDto.getPlanStatus());
 
         return plan;
+    }
+
+    public Plan(Long id, LocalDate startDate, LocalDate endDate, String description, PlanStatus planStatus) {
+        this.id = id;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.description = description;
+        this.planStatus = planStatus;
+    }
+
+    public Plan(Long id, LocalDate startDate, LocalDate endDate, String description, PlanStatus planStatus, List<Goal> goals) {
+        this.id = id;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.description = description;
+        this.planStatus = planStatus;
+        this.goals = goals;
     }
 
     @Override

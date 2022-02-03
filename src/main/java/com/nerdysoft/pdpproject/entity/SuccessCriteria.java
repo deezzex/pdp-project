@@ -37,6 +37,19 @@ public class SuccessCriteria {
     @ManyToOne
     private Goal goal;
 
+    public SuccessCriteria(String title, String description, CriteriaStatus criteriaStatus) {
+        this.title = title;
+        this.description = description;
+        this.criteriaStatus = criteriaStatus;
+    }
+
+    public SuccessCriteria(Long id, String title, String description, CriteriaStatus criteriaStatus) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.criteriaStatus = criteriaStatus;
+    }
+
     public static SuccessCriteria from(SCDto successCriteriaDto){
         SuccessCriteria criteria = new SuccessCriteria();
 

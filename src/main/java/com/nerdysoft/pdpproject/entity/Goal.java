@@ -66,6 +66,33 @@ public class Goal {
     @ManyToOne
     private Plan plan;
 
+    public Goal(Long id, String title, String description, LocalDate startDate, LocalDate planedEndDate, LocalDate endDate, GoalPriority goalPriority, GoalStatus goalStatus, String comment, Integer mark) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.startDate = startDate;
+        this.planedEndDate = planedEndDate;
+        this.endDate = endDate;
+        this.goalPriority = goalPriority;
+        this.goalStatus = goalStatus;
+        this.comment = comment;
+        this.mark = mark;
+    }
+
+    public Goal(Long id, String title, String description, LocalDate startDate, LocalDate planedEndDate, LocalDate endDate, GoalPriority goalPriority, GoalStatus goalStatus, String comment, Integer mark, List<SuccessCriteria> successCriteria) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.startDate = startDate;
+        this.planedEndDate = planedEndDate;
+        this.endDate = endDate;
+        this.goalPriority = goalPriority;
+        this.goalStatus = goalStatus;
+        this.comment = comment;
+        this.mark = mark;
+        this.successCriteria = successCriteria;
+    }
+
     public void addCriteria(SuccessCriteria criteria){
         successCriteria.add(criteria);
     }

@@ -1,8 +1,6 @@
 package com.nerdysoft.pdpproject.controller;
 
-import com.nerdysoft.pdpproject.entity.Goal;
 import com.nerdysoft.pdpproject.entity.Plan;
-import com.nerdysoft.pdpproject.entity.dto.GoalDto;
 import com.nerdysoft.pdpproject.entity.dto.PlanDto;
 import com.nerdysoft.pdpproject.service.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,7 +87,7 @@ public class PlanController {
 
     @DeleteMapping("/{planId}/delete/{goalId}")
     public ResponseEntity<PlanDto> deleteCriteriaFromGoal(@PathVariable @Min(1) Long planId, @PathVariable @Min(1) Long goalId){
-        Plan plan = planService.removeCriteriaFromGoal(planId, goalId);
+        Plan plan = planService.removeGoalFromPlan(planId, goalId);
 
         return new ResponseEntity<>(PlanDto.from(plan), OK);
     }
