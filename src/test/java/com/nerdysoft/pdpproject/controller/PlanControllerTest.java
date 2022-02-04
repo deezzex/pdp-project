@@ -48,7 +48,6 @@ class PlanControllerTest {
     private PlanService planService;
 
     private static final String EXPECTED_OBJ = "{\"id\":94,\"startDate\":\"2022-12-12\",\"endDate\":\"2023-12-12\",\"description\":\"test\",\"planStatus\":\"NEW\",\"goalDtos\":[]}";
-
     public static final String EXPECTED_ARR = "[{\"id\":94,\"startDate\":\"2022-12-12\",\"endDate\":\"2023-12-12\",\"description\":\"test\",\"planStatus\":\"NEW\",\"goalDtos\":[]}]";
     @SneakyThrows
     @Test

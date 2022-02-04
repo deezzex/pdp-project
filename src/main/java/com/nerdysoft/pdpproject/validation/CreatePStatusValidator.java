@@ -1,6 +1,5 @@
 package com.nerdysoft.pdpproject.validation;
 
-import com.nerdysoft.pdpproject.entity.enums.GoalStatus;
 import com.nerdysoft.pdpproject.entity.enums.PlanStatus;
 import com.nerdysoft.pdpproject.validation.annotations.CreatePStatus;
 
